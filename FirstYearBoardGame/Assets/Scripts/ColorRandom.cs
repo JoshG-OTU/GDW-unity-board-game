@@ -20,7 +20,6 @@ public class ColorRandom : MonoBehaviour
     public TextMeshProUGUI AreYouReadyText;
     private int textTimer = 500;
     private int index = 0;
-    private int textstate = 0;
     public GameObject WinScreen;
     public TextMeshProUGUI WinnerText;
 
@@ -30,7 +29,6 @@ public class ColorRandom : MonoBehaviour
     public int colortime;
     public int timer = 60;
     public int time;
-    private bool visibleBool  = false;
 
     [SerializeField] private Vector3 orderedPosition;
     private Vector3 defaultPosition; 
