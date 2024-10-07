@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private List<Player> _players;
+    [SerializeField] private List<Playerboard> _players;
     
     public float _speed;
 

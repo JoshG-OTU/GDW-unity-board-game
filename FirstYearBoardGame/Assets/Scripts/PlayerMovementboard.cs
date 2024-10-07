@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementboard : MonoBehaviour
 {
-    [SerializeField] private List<Player> _players;
+    [SerializeField] private List<Playerboard> _players;
     
     public float _speed;
 
