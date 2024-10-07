@@ -9,10 +9,10 @@ public class QTEsys : MonoBehaviour
 {
     public TMP_Text DisplayBox;
     public TMP_Text Passbox;
-    public int QTEGen;
-    public int WaitingForKey;
-    public int CorrectKey;
-    public int CountingDown;
+    private int QTEGen;
+    private int WaitingForKey;
+    private int CorrectKey;
+    private int CountingDown;
 
     public void Update()
     {
@@ -89,5 +89,5 @@ public class QTEsys : MonoBehaviour
                 CountingDown = 1;
             }
         }
-    }
+    }    
 }
