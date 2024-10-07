@@ -35,13 +35,13 @@ public class QTE : MonoBehaviour
     void Update()
     {
         // Detecting button inputs
-        if (Input.GetKeyDown(KeyCode.LeftShift));
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Debug.Log("Shift was pressed");
             Debug.Log("Player 1 wins");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) ;
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Space was pressed");
             Debug.Log("Player 2 wins");
@@ -53,7 +53,7 @@ public class QTE : MonoBehaviour
             Debug.Log("Player 3 wins");
         }
 
-        if (Input.GetKeyDown(KeyCode.KeypadEnter)) ;
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             Debug.Log("Enter was pressed");
             Debug.Log("Player 4 wins");

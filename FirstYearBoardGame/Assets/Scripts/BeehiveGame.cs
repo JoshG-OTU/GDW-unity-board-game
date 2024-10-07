@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class behivegame : MonoBehaviour
+public class BeehiveGame : MonoBehaviour
 {
-    int _tileMovementAmount;
     public int count = 0;
     // Start is called before the first frame update
     void Start()
@@ -20,8 +17,6 @@ public class behivegame : MonoBehaviour
             {
 
                 count++;
-            
-                _tileMovementAmount = 1;
                 
             Debug.Log("count = "+count);
                 if (count == 6)
@@ -42,8 +37,6 @@ public class behivegame : MonoBehaviour
                 for (int j = 0; j < 2; j++)
                 {
                     count++;
-
-                    _tileMovementAmount = 1;
                     
                 Debug.Log("count = " + count);
                     if (count == 6)

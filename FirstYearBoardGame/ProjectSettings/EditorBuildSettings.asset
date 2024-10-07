@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ColorPicker.unity
     guid: 31a6b21c92f99914084de35d1c0d6944
+  - enabled: 1
+    path: Assets/Scenes/QTE.unity
+    guid: 37766e9fb8080c7409cfc9d5fabb5c89
   m_configObjects: {}
