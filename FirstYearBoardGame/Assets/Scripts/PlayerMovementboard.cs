@@ -26,18 +26,18 @@ public class PlayerMovementboard : MonoBehaviour
     public int _currentPlayer = 0;
     int _tileMovementAmount;
 
-
     public int play1place = 1;
     public int play2place = 2;
     public int play3place = 3;
     public int play4place = 4;
 
-    Die _die = new Die();
+    private Die _die;
 
     void Start()
     {
         _board.InitTilePositions();
         _text.text = "press space to roll the die";
+        _die = gameObject.AddComponent<Die>();
     }
 
     void CheckWin()
@@ -81,23 +81,8 @@ public class PlayerMovementboard : MonoBehaviour
                 UpdatePosition();
             }
 
-
-
-
-
-
-
-
-
             if (_tileMovementAmount == 0 && !_isMoving)
             {
-
-                
-
-
-
-
-
 
                 _text.text = "press space to roll the dice yahoo";
 
@@ -149,10 +134,4 @@ public class PlayerMovementboard : MonoBehaviour
         _isMoving = true;
         _players[_currentPlayer].SetCurrentTile(_players[_currentPlayer].GetCurrentTile() + 1);
     }
-
-
-
-
-
-
 }

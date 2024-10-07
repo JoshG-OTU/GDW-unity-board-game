@@ -20,13 +20,6 @@ public class Board : MonoBehaviour
 
     public int whofourth;
 
-
-
-
-
-
-
-
     public Vector2[] GetTilePositions()
     {
         return _tilePositions;
@@ -42,11 +35,11 @@ public class Board : MonoBehaviour
         {
             if (i % 10 == 0)
             {
-                _tilePositions[i] = _tilePositions[i - 1] + new Vector2(0f, 1f);
+                _tilePositions[i] = _tilePositions[i - 1] + new Vector2(0f, 1.8f);
             }
             else if (!reverse)
             {
-                _tilePositions[i] = _tilePositions[i - 1] + new Vector2(1f, 0f);
+                _tilePositions[i] = _tilePositions[i - 1] + new Vector2(1.8f, 0f);
             }
             else
             {
