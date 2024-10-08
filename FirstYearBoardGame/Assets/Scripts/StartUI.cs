@@ -24,7 +24,7 @@ public class StartUI : MonoBehaviour
 
     public void clearStartMenu(){
 
-        if (GameObject.Find("GameManager").GetComponent<ColorRandom>().players.Count >=1){
+        if (GameObject.Find("GameManager").GetComponent<ColorRandom>().players.Count >=2){
             this.GetComponent<Canvas>().enabled = false;
         }
     }
