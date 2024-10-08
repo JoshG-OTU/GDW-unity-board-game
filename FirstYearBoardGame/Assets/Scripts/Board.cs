@@ -13,11 +13,8 @@ public class Board : MonoBehaviour
 
 
     public int whofirst;
-
     public int whosecond;
-
     public int whothird;
-
     public int whofourth;
 
     public Vector2[] GetTilePositions()
@@ -43,7 +40,7 @@ public class Board : MonoBehaviour
             }
             else
             {
-                _tilePositions[i] = _tilePositions[i - 1] + new Vector2(-1f, 0f);
+                _tilePositions[i] = _tilePositions[i - 1] + new Vector2(-1.8f, 0f);
             }
 
             if ((i + 1) % 10 == 0)
