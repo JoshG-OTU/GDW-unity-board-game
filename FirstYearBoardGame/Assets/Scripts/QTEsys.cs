@@ -1,93 +1,89 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using TMPro;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class QTEsys : MonoBehaviour
 {
-    public TMP_Text DisplayBox;
-    public TMP_Text Passbox;
-    private int QTEGen;
-    private int WaitingForKey;
-    private int CorrectKey;
-    private int CountingDown;
 
-    public void Update()
+    public GameObject qteSignal;
+    public TMP_Text passbox;
+    private bool gameStarting = true;
+    private bool waitingForKey;
+    private bool qteIsActive;
+    private bool playerFailed;
+    private bool playerPassed;
+
+    private void StartGame()
     {
-        if (WaitingForKey == 0)
-        {
-            QTEGen = Random.Range(1, 2);
-            CountingDown = 1;
-            StartCoroutine(CountDown());
+        StopAllCoroutines();
+        qteSignal.SetActive(false);
+        qteIsActive = false;
+        passbox.text = "";
+        StartCoroutine(CountDown());
+        waitingForKey = true;
+        gameStarting = false;
+        playerFailed = false;
+        playerPassed = false;
+    }
 
-            if (QTEGen == 1)
-            {
-                WaitingForKey = 1;
-                DisplayBox.GetComponent<TMP_Text>().text = "<sprite index=0>";
-            }
-        }
-        if (QTEGen == 1)
+    private void Update()
+    {
+        if (gameStarting)
         {
-            if (Input.anyKeyDown)
-            {
-                if (Input.GetButtonDown("QTE Button Input"))
-                {
-                    CorrectKey = 1;
-                    StartCoroutine(KeyPressing());
-                }
-                else
-                {
-                    CorrectKey = 2;
-                    StartCoroutine(KeyPressing());
-                }
-            }
+            StartGame();
         }
-        IEnumerator KeyPressing()
+
+        if (Input.GetKeyDown(KeyCode.Space) && waitingForKey)
         {
-            QTEGen = 4;
-            if (CorrectKey == 1)
+            if (!qteIsActive)
             {
-                CountingDown = 2;
-                Passbox.GetComponent<TMP_Text>().text = "PASS!!";
-                yield return new WaitForSeconds(1.5f);
-                CorrectKey = 0;
-                Passbox.GetComponent<TMP_Text>().text = "";
-                DisplayBox.GetComponent<TMP_Text>().text = "";
-                yield return new WaitForSeconds(1.5f);
-                WaitingForKey = 0;
-                CountingDown = 1;
+                StartCoroutine(Fail());
             }
-            if (CorrectKey == 2)
+            else
             {
-                CountingDown = 2;
-                Passbox.GetComponent<TMP_Text>().text = "Fail!!";
-                yield return new WaitForSeconds(1.5f);
-                CorrectKey = 0;
-                Passbox.GetComponent<TMP_Text>().text = "";
-                DisplayBox.GetComponent<TMP_Text>().text = "";
-                yield return new WaitForSeconds(1.5f);
-                WaitingForKey = 0;
-                CountingDown = 1;
+                StartCoroutine(Pass());
             }
         }
-        IEnumerator CountDown()
+    }
+
+    IEnumerator LookingForKey()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (!playerPassed) StartCoroutine(Fail());
+    }
+
+
+    IEnumerator CountDown()
+    {
+        yield return new WaitForSeconds(Random.Range(3f, 4f));
+        if (!playerFailed)
         {
-            yield return new WaitForSeconds(3.5f);
-            if (CountingDown == 1)
-            {
-                QTEGen = 4;
-                CountingDown = 2;
-                Passbox.GetComponent<TMP_Text>().text = "Fail!!";
-                yield return new WaitForSeconds(1.5f);
-                CorrectKey = 0;
-                Passbox.GetComponent<TMP_Text>().text = "";
-                DisplayBox.GetComponent<TMP_Text>().text = "";
-                yield return new WaitForSeconds(1.5f);
-                WaitingForKey = 0;
-                CountingDown = 1;
-            }
+            qteSignal.SetActive(true);
+            qteIsActive = true;
+            StartCoroutine(LookingForKey());
         }
-    }    
+    }
+
+    IEnumerator Pass()
+    {
+        playerPassed = true;
+        waitingForKey = false;
+        passbox.text = "PASS!!";
+        yield return new WaitForSeconds(2.5f);
+        gameStarting = true;
+    }
+
+    IEnumerator Fail()
+    {
+        playerFailed = true;
+        waitingForKey = false;
+        passbox.text = "Fail!!";
+        yield return new WaitForSeconds(2.5f);
+        gameStarting = true;
+    }
 }
